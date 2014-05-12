@@ -21,6 +21,7 @@ public class GrammarCheckerLexer {
 	private BufferedReader reader;
 	private StringBuffer sb;
 	private Stack<Integer> stack;
+	private LinkedList<Token>  list;
 
 	public GrammarCheckerLexer(String fname, InputStream fstream) {
 		this.fname = fname;
@@ -41,7 +42,9 @@ public class GrammarCheckerLexer {
 		int index;
 		int offset;
 		char scanChar;
-		LinkedList<Token> list = new LinkedList<Token>();
+		Token token = new Token();
+		list = null;
+		list = new LinkedList<Token>();
 		//File filew = new File("D:\\netcode\\A.txt");
 		//BufferedWriter bw = new BufferedWriter(new FileWriter(filew));
 		
@@ -78,7 +81,6 @@ public class GrammarCheckerLexer {
 							list.add(new Token(Token.Kind.TOKEN_ATTRIBUTE,
 									sb.toString()));
 							sb.setLength(0);
-							//读取词性后的单词
 							while(index<buf.length()-1)
 							{
 								scanChar = buf.charAt(++index);
@@ -94,7 +96,7 @@ public class GrammarCheckerLexer {
 									break;
 								}
 							}
-							//添加到list
+							if(sb.length() > 0)
 							list.add(new Token(Token.Kind.TOKEN_WORD,
 									sb.toString()));			
 							break;
@@ -127,7 +129,6 @@ public class GrammarCheckerLexer {
 							}
 							
 							sb.setLength(0);
-							//读取词性后的单词
 							while(index<buf.length()-1)
 							{
 								scanChar = buf.charAt(++index);
@@ -143,7 +144,6 @@ public class GrammarCheckerLexer {
 									break;
 								}
 							}
-							//添加到list
 							list.add(new Token(Token.Kind.TOKEN_WORD,
 									sb.toString()));
 							break;
@@ -158,7 +158,6 @@ public class GrammarCheckerLexer {
 							list.add(new Token(Token.Kind.TOKEN_OTHERS,
 									sb.toString()));
 							sb.setLength(0);
-							//读取词性后的单词
 							while(index<buf.length()-1)
 							{
 								scanChar = buf.charAt(++index);
@@ -174,7 +173,6 @@ public class GrammarCheckerLexer {
 									break;
 								}
 							}
-							//添加到list
 							list.add(new Token(Token.Kind.TOKEN_WORD,
 									sb.toString()));
 						}
@@ -185,6 +183,8 @@ public class GrammarCheckerLexer {
 					}
 				}
 				//System.out.println("ok");
+				
+			//	System.out.println("size:" + list.size());
 				return list;
 				
 				
@@ -319,7 +319,6 @@ public class GrammarCheckerLexer {
 			
 		}
 		//bw.close();
-		System.out.println("the end");
 		return null;
 		//return list;
 		

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JDBC {
-	private static String url = "jdbc:mysql://localhost:3306/mydatabase";
+	private static String url = "jdbc:mysql://localhost:3306/cc";
 	private static String user = "root";
 	private static String password = "123";
 	
@@ -20,11 +20,11 @@ public class JDBC {
 			try {
 				connection = DriverManager.getConnection(url, user, password);
 			} catch (SQLException e) {
-				System.out.println("�����ʧ�ܣ�");
+				System.out.println("connect error");
 				e.printStackTrace();
 			}
 		} catch (ClassNotFoundException e) {
-			System.out.println("JDBC����ʧ�ܣ�");
+			System.out.println("JDBC class not found");
 			e.printStackTrace();
 		}
 		return connection;

@@ -1,7 +1,7 @@
 package com.grammarchecker.parser;
 
 public class Token {
-	
+
 	public enum Kind{
 		TOKEN_WORD,
 		TOKEN_ATTRIBUTE,
@@ -12,6 +12,10 @@ public class Token {
 	// content for each tag
 	private String content;
 	private Kind kind;
+	
+	public Token(){
+		
+	}
 	
 	public Token(Kind kind, String content){
 		this.kind = kind;
@@ -31,6 +35,14 @@ public class Token {
 
 	public Kind getKind() {
 		return kind;
+	}
+	
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setKind(Kind kind) {
+		this.kind = kind;
 	}
 
 }
